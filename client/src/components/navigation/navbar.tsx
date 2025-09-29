@@ -103,7 +103,7 @@ export default function Navbar() {
         ></div>
         
         {/* Menu Panel */}
-        <div className={`absolute top-16 left-0 right-0 glass-dark border-t border-white/10 transform transition-transform duration-300 ${
+        <div className={`absolute top-16 left-0 right-0 glass-dark border-t border-white/10 transform transition-transform duration-300 liquid-gradient-dark ${
           isMobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
         }`}>
           <div className="max-w-7xl mx-auto px-4 py-6">

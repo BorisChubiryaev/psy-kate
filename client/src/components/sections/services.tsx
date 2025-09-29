@@ -13,7 +13,7 @@ export default function Services() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Online Consultations */}
-          <div className="glass p-8 rounded-3xl hover:scale-105 transition-transform duration-300" data-testid="service-online">
+          <div className="glass p-8 rounded-3xl hover:scale-105 transition-transform duration-300 glass-hover liquid-gradient" data-testid="service-online">
             <div className="text-center mb-6">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-video text-2xl text-primary-foreground"></i>
@@ -54,7 +54,7 @@ export default function Services() {
           </div>
           
           {/* Offline Consultations */}
-          <div className="glass p-8 rounded-3xl hover:scale-105 transition-transform duration-300" data-testid="service-offline">
+          <div className="glass p-8 rounded-3xl hover:scale-105 transition-transform duration-300 glass-hover liquid-gradient" data-testid="service-offline">
             <div className="text-center mb-6">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-map-marker-alt text-2xl text-primary-foreground"></i>
@@ -97,7 +97,7 @@ export default function Services() {
         
         {/* Additional Info */}
         <div className="mt-16 text-center">
-          <div className="glass-dark p-8 rounded-2xl max-w-4xl mx-auto" data-testid="consultation-includes">
+          <div className="glass-dark p-8 rounded-2xl max-w-4xl mx-auto liquid-gradient-dark" data-testid="consultation-includes">
             <h3 className="text-2xl font-bold text-foreground mb-4">Что включает консультация</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-muted-foreground">
               <div className="text-center">

@@ -25,14 +25,14 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <a 
                 href="#contact" 
-                className="bg-primary text-primary-foreground px-8 py-4 rounded-xl hover:bg-opacity-90 transition-all duration-300 hover:scale-105 font-medium"
+                className="glass px-8 py-4 rounded-xl hover:bg-opacity-90 transition-all duration-300 hover:scale-105 font-medium glass-hover"
                 data-testid="button-consultation"
               >
                 Записаться на консультацию
               </a>
               <a 
                 href="#about" 
-                className="glass-dark px-8 py-4 rounded-xl hover:bg-opacity-20 transition-all duration-300 hover:scale-105 font-medium"
+                className="glass-dark px-8 py-4 rounded-xl hover:bg-opacity-20 transition-all duration-300 hover:scale-105 font-medium glass-dark-hover"
                 data-testid="button-learn-more"
               >
                 Узнать больше
@@ -42,7 +42,7 @@ export default function Hero() {
           
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="glass rounded-3xl p-8 hover:scale-105 transition-transform duration-500 animate-glow">
+              <div className="glass rounded-3xl p-8 hover:scale-105 transition-transform duration-500 animate-glow liquid-gradient">
                 <img 
                   src={ekaterinaImage1}
                   alt="Екатерина Чубиряева - Гештальт-психолог" 

@@ -60,7 +60,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div className="space-y-8">
-            <div className="glass p-8 rounded-2xl" data-testid="contact-info">
+            <div className="glass p-8 rounded-2xl liquid-gradient" data-testid="contact-info">
               <h3 className="text-2xl font-bold text-foreground mb-6">Контактная информация</h3>
               
               <div className="space-y-6">
@@ -107,7 +107,7 @@ export default function Contact() {
             </div>
             
             {/* Working Hours */}
-            <div className="glass p-8 rounded-2xl" data-testid="working-hours">
+            <div className="glass p-8 rounded-2xl liquid-gradient" data-testid="working-hours">
               <h3 className="text-xl font-bold text-foreground mb-4">Часы работы</h3>
               <div className="space-y-2 text-muted-foreground">
                 <div className="flex justify-between">
@@ -127,7 +127,7 @@ export default function Contact() {
           </div>
           
           {/* Contact Form */}
-          <div className="glass p-8 rounded-2xl" data-testid="contact-form">
+          <div className="glass p-8 rounded-2xl liquid-gradient" data-testid="contact-form">
             <h3 className="text-2xl font-bold text-foreground mb-6">Записаться на консультацию</h3>
             
             <form className="space-y-6" onSubmit={handleSubmit}>

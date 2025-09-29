@@ -30,11 +30,22 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          utils: ['@/lib/utils'],
+        }
+      }
+    },
+    sourcemap: true,
   },
   server: {
     fs: {
       strict: true,
       deny: ["**/.*"],
     },
+    host: true,
+    port: 3000,
   },
 });

@@ -1,10 +1,19 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import path from "path";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Security headers
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  next();
+});
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -63,7 +72,7 @@ app.use((req, res, next) => {
   const port = parseInt(process.env.PORT || '3000', 10);
   server.listen({
     port,
-    host: "127.0.0.1",
+    host: "0.0.0.0", // Changed from 127.0.0.1 to 0.0.0.0 for production hosting
   }, () => {
     log(`serving on port ${port}`);
   });

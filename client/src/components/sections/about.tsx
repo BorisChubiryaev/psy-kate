@@ -27,14 +27,14 @@ export default function About() {
             </div>
             
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="glass-dark p-6 rounded-xl" data-testid="about-education">
+              <div className="glass-dark p-6 rounded-xl glass-dark-hover" data-testid="about-education">
                 <div className="flex items-center mb-4">
                   <i className="fas fa-graduation-cap text-2xl text-muted-foreground mr-3"></i>
                   <h3 className="font-semibold text-foreground">Образование</h3>
                 </div>
                 <p className="text-muted-foreground">Сертифицированный гештальт-психолог</p>
               </div>
-              <div className="glass-dark p-6 rounded-xl" data-testid="about-experience">
+              <div className="glass-dark p-6 rounded-xl glass-dark-hover" data-testid="about-experience">
                 <div className="flex items-center mb-4">
                   <i className="fas fa-clock text-2xl text-muted-foreground mr-3"></i>
                   <h3 className="font-semibold text-foreground">Опыт</h3>
@@ -46,7 +46,7 @@ export default function About() {
           
           <div className="order-1 lg:order-2 flex justify-center">
             <div className="relative">
-              <div className="glass rounded-3xl p-6 hover:scale-105 transition-transform duration-500">
+              <div className="glass rounded-3xl p-6 hover:scale-105 transition-transform duration-500 liquid-gradient">
                 <img 
                   src={ekaterinaImage2}
                   alt="Екатерина Чубиряева в рабочей обстановке" 

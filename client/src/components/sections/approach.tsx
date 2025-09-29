@@ -48,7 +48,7 @@ export default function Approach() {
           {principles.map((principle, index) => (
             <div 
               key={index}
-              className="glass-dark p-8 rounded-2xl text-center hover:scale-105 transition-transform duration-300"
+              className="glass-dark p-8 rounded-2xl text-center hover:scale-105 transition-transform duration-300 glass-dark-hover liquid-gradient-dark"
               data-testid={`principle-${index}`}
             >
               <div className="w-16 h-16 bg-gradient-to-br from-primary to-muted rounded-full flex items-center justify-center mx-auto mb-6">
@@ -64,7 +64,7 @@ export default function Approach() {
         
         {/* Quote Section */}
         <div className="mt-16">
-          <div className="glass p-8 md:p-12 rounded-3xl max-w-4xl mx-auto text-center" data-testid="approach-quote">
+          <div className="glass p-8 md:p-12 rounded-3xl max-w-4xl mx-auto text-center liquid-gradient" data-testid="approach-quote">
             <blockquote className="text-2xl md:text-3xl font-light text-foreground italic mb-6">
               "Человек не может изменить то, что с ним случилось, но он может изменить свое отношение к этому"
             </blockquote>

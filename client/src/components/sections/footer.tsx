@@ -6,38 +6,40 @@ export default function Footer() {
           <div data-testid="footer-info">
             <h3 className="text-xl font-bold mb-4">Екатерина Чубиряева</h3>
             <p className="text-primary-foreground/80">
-              Гештальт-психолог<br />
-              Индивидуальные консультации<br />
+              Гештальт-психолог
+              <br />
+              Индивидуальные консультации
+              <br />
               Онлайн и оффлайн в Москве
             </p>
           </div>
-          
+
           <div data-testid="footer-links">
             <h3 className="text-lg font-semibold mb-4">Быстрые ссылки</h3>
             <div className="space-y-2">
-              <a 
-                href="#about" 
+              <a
+                href="#about"
                 className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 data-testid="footer-link-about"
               >
                 Обо мне
               </a>
-              <a 
-                href="#services" 
+              <a
+                href="#services"
                 className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 data-testid="footer-link-services"
               >
                 Услуги
               </a>
-              <a 
-                href="#approach" 
+              <a
+                href="#approach"
                 className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 data-testid="footer-link-approach"
               >
                 Подход
               </a>
-              <a 
-                href="#contact" 
+              <a
+                href="#contact"
                 className="block text-primary-foreground/80 hover:text-primary-foreground transition-colors"
                 data-testid="footer-link-contact"
               >
@@ -45,7 +47,7 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          
+
           <div data-testid="footer-contact">
             <h3 className="text-lg font-semibold mb-4">Контакты</h3>
             <div className="space-y-2 text-primary-foreground/80">
@@ -55,8 +57,11 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        
-        <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-primary-foreground/60" data-testid="footer-copyright">
+
+        <div
+          className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-primary-foreground/60"
+          data-testid="footer-copyright"
+        >
           <p>&copy; 2024 Екатерина Чубиряева. Все права защищены.</p>
         </div>
       </div>

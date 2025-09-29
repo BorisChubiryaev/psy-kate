@@ -11,16 +11,19 @@ This guide explains how to deploy the Psy-Kate website with liquid glass design 
 ## Build Process
 
 1. Install dependencies:
+
    ```bash
    npm install
    ```
 
 2. Build the project:
+
    ```bash
    npm run build
    ```
 
    This command will:
+
    - Build the React frontend using Vite
    - Bundle the server code using esbuild
    - Output everything to the `dist/` directory
@@ -70,6 +73,7 @@ CMD ["node", "dist/index.js"]
 ```
 
 Then build and run:
+
 ```bash
 docker build -t psy-kate .
 docker run -p 3000:3000 psy-kate
@@ -85,6 +89,7 @@ Set the following environment variables for production:
 ## Server Configuration
 
 The application is configured to:
+
 - Listen on all interfaces (`0.0.0.0`) in production
 - Serve both API endpoints and static files
 - Use port 3000 by default (configurable via `PORT` environment variable)
@@ -92,6 +97,7 @@ The application is configured to:
 ## Liquid Glass Design Features
 
 The liquid glass design is implemented using:
+
 - CSS backdrop filters for frosted glass effect
 - Gradient animations for fluid appearance
 - Responsive design that works on all devices

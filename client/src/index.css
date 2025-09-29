@@ -164,8 +164,40 @@
 
   .section-divider {
     background: linear-gradient(90deg, transparent 0%, hsl(0, 0%, 80%) 50%, transparent 100%);
-    height: 1px;
+    height: 2px;
     width: 100%;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(0, 0%, 60%), transparent);
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+  
+  /* Mobile optimized section divider */
+  @media (max-width: 768px) {
+    .section-divider {
+      margin: 2rem auto;
+      max-width: 90%;
+      height: 1px;
+    }
+    
+    .section-divider::before {
+      height: 1px;
+    }
   }
 
   .animate-float {
@@ -221,5 +253,21 @@
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+  }
+  
+  /* Mobile navigation improvements */
+  .mobile-nav-link {
+    @apply block text-foreground hover:text-muted-foreground transition-colors font-medium py-3 px-4 rounded-lg hover:bg-white/5;
+  }
+  
+  .mobile-nav-link.active {
+    @apply bg-white/10;
+  }
+  
+  /* Mobile specific improvements */
+  @media (max-width: 768px) {
+    .mobile-nav-link {
+      @apply py-4 text-lg;
+    }
   }
 }

@@ -1,4 +1,6 @@
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+  
   return (
     <footer className="bg-primary text-primary-foreground py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,7 +64,7 @@ export default function Footer() {
           className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-primary-foreground/60"
           data-testid="footer-copyright"
         >
-          <p>&copy; 2024 Екатерина Чубиряева. Все права защищены.</p>
+          <p>&copy; {currentYear} Екатерина Чубиряева. Все права защищены.</p>
         </div>
       </div>
     </footer>

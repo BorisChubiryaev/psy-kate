@@ -1,12 +1,12 @@
 # Deployment Guide
 
-This guide explains how to deploy the Psy-Kate website with liquid glass design to a production server.
+This guide explains how to deploy the Psy-Kate website with liquid glass design to Vercel.
 
 ## Prerequisites
 
 - Node.js 18+ installed
 - npm or yarn package manager
-- A server with SSH access (or a cloud platform like Replit, Heroku, Vercel, etc.)
+- A Vercel account
 
 ## Build Process
 
@@ -22,77 +22,62 @@ This guide explains how to deploy the Psy-Kate website with liquid glass design 
    npm run build
    ```
 
-   This command will:
+   This command will build the React frontend using Vite and output everything to the `dist/` directory.
 
-   - Build the React frontend using Vite
-   - Bundle the server code using esbuild
-   - Output everything to the `dist/` directory
+## Deploying to Vercel
 
-## Deployment Options
+### Option 1: Using Vercel CLI
 
-### Option 1: Traditional Server Deployment
+1. Install Vercel CLI globally:
 
-1. Copy the `dist/` directory to your server
-2. Install production dependencies only:
    ```bash
-   npm install --production
-   ```
-3. Start the server:
-   ```bash
-   npm start
+   npm install -g vercel
    ```
 
-### Option 2: Using Process Manager (PM2)
-
-1. Install PM2 globally:
+2. Deploy the project:
    ```bash
-   npm install -g pm2
-   ```
-2. Start the application:
-   ```bash
-   pm2 start dist/index.js --name "psy-kate"
+   vercel
    ```
 
-### Option 3: Docker Deployment
+### Option 2: Using Git Integration
 
-Create a Dockerfile in the project root:
+1. Push your code to a Git repository (GitHub, GitLab, or Bitbucket)
+2. Connect your repository to Vercel:
+   - Go to [vercel.com](https://vercel.com) and sign in
+   - Click "New Project"
+   - Import your Git repository
+   - Vercel will automatically detect the project settings
+   - Click "Deploy"
 
-```dockerfile
-FROM node:18-alpine
+### Option 3: Manual Deployment
 
-WORKDIR /app
+1. Build the project locally:
 
-COPY package*.json ./
-RUN npm ci --only=production
+   ```bash
+   npm run build
+   ```
 
-COPY dist/ ./dist/
+2. Install Vercel CLI:
 
-EXPOSE 3000
+   ```bash
+   npm install -g vercel
+   ```
 
-CMD ["node", "dist/index.js"]
-```
+3. Deploy the dist folder:
+   ```bash
+   vercel dist
+   ```
 
-Then build and run:
+## Vercel Configuration
 
-```bash
-docker build -t psy-kate .
-docker run -p 3000:3000 psy-kate
-```
+The project includes a `vercel.json` file with the following configuration:
+
+- Rewrites all routes to index.html for client-side routing
+- Security headers for enhanced protection
 
 ## Environment Variables
 
-Set the following environment variables for production:
-
-- `NODE_ENV=production`
-- `PORT=3000` (or your preferred port)
-
-## Server Configuration
-
-The application is configured to:
-
-- Listen on all interfaces (`0.0.0.0`) in production
-- Serve both API endpoints and static files
-- Use port 3000 by default (configurable via `PORT` environment variable)
+For local development, you can create a `.env.local` file with any required environment variables.
 
 ## Liquid Glass Design Features
 
@@ -109,7 +94,6 @@ If you encounter issues:
 
 1. Check that all dependencies are installed
 2. Verify the build process completed successfully
-3. Ensure the PORT is not blocked by firewall
-4. Check server logs for error messages
+3. Check Vercel logs for error messages
 
 For any issues, please check the console logs or contact the development team.

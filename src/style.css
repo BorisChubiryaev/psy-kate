@@ -395,3 +395,6 @@ ol, ul { padding: 0; list-style: none; }
   .hero__circle { transition: none; stroke-dashoffset: 0; }
   .hero__figure img { transform: none; transition: none; }
 }
+
+.about__life a { color: var(--clay); text-underline-offset: 3px; }
+.about__life a:hover { color: var(--ink); }

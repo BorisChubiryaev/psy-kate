@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" href="/images/kate-hero-1000.webp" imagesrcset="/images/kate-hero-640.webp 640w, /images/kate-hero-1000.webp 1000w" imagesizes="(max-width: 860px) 90vw, 42vw" />
+  <link rel="preload" as="image" href="/images/kate-hero-1000.webp" imagesrcset="/images/kate-hero-640.webp 640w, /images/kate-hero-1000.webp 1000w, /images/kate-hero-1400.webp 1400w" imagesizes="(max-width: 860px) 90vw, 42vw" />
   <link rel="stylesheet" href="/src/style.css" />
 
   <script type="application/ld+json">
@@ -90,8 +90,8 @@
             <path pathLength="100" d="M352 128 A170 170 0 1 0 368 200" />
           </svg>
           <picture>
-            <source type="image/webp" srcset="/images/kate-hero-640.webp 640w, /images/kate-hero-1000.webp 1000w" sizes="(max-width: 860px) 90vw, 42vw" />
-            <img src="/images/kate-hero-1000.jpg" width="1000" height="1333" alt="Екатерина Чубиряева, гештальт-терапевт, улыбается, сидя на высоком стуле" fetchpriority="high" />
+            <source type="image/webp" srcset="/images/kate-hero-640.webp 640w, /images/kate-hero-1000.webp 1000w, /images/kate-hero-1400.webp 1400w" sizes="(max-width: 860px) 90vw, 42vw" />
+            <img src="/images/kate-hero-1000.jpg" width="1000" height="1333" alt="Екатерина Чубиряева, гештальт-терапевт, спокойно сидит в кресле и слегка улыбается" fetchpriority="high" />
           </picture>
           <figcaption>здесь&nbsp;и&nbsp;сейчас</figcaption>
         </figure>
@@ -174,8 +174,8 @@
       <div class="wrap about__grid">
         <figure class="about__figure reveal">
           <picture>
-            <source type="image/webp" srcset="/images/kate-about-640.webp 640w, /images/kate-about-1000.webp 1000w" sizes="(max-width: 860px) 90vw, 40vw" />
-            <img src="/images/kate-about-1000.jpg" width="1000" height="1300" loading="lazy" alt="Екатерина Чубиряева сидит на полу в студии и задумчиво смотрит вверх" />
+            <source type="image/webp" srcset="/images/kate-about-640.webp 640w, /images/kate-about-1000.webp 1000w, /images/kate-about-1400.webp 1400w" sizes="(max-width: 860px) 90vw, 40vw" />
+            <img src="/images/kate-about-1000.jpg" width="1000" height="1300" loading="lazy" alt="Екатерина Чубиряева сидит на полу и разводит рукой: «ну вот так»" />
           </picture>
           <figcaption>«Можно не знать, с чего начать. <br />Начнём с того, что есть»</figcaption>
         </figure>
@@ -207,17 +207,30 @@
 
     <!-- PROCESS -->
     <section class="section process" aria-labelledby="process-title">
-      <div class="wrap">
-        <div class="section__head">
-          <p class="eyebrow reveal">Как это происходит</p>
-          <h2 class="h2 reveal" id="process-title">Четыре шага, <em>и ни одного обязательного</em></h2>
+      <div class="wrap process__grid">
+        <figure class="process__figure reveal">
+          <picture>
+            <source type="image/webp" srcset="/images/kate-chair-640.webp 640w, /images/kate-chair-1000.webp 1000w, /images/kate-chair-1400.webp 1400w" sizes="(max-width: 860px) 90vw, 38vw" />
+            <img src="/images/kate-chair-1000.jpg" width="1000" height="1250" loading="lazy" alt="Екатерина стоит за пустым креслом, положив руки на его спинку" />
+          </picture>
+          <figcaption>
+            <b>Пустой стул</b> — одна из известных гештальт-техник.
+            А это кресло просто ждёт вас.
+          </figcaption>
+        </figure>
+
+        <div class="process__body">
+          <div class="section__head">
+            <p class="eyebrow reveal">Как это происходит</p>
+            <h2 class="h2 reveal" id="process-title">Четыре шага, <em>и ни одного обязательного</em></h2>
+          </div>
+          <ol class="steps">
+            <li class="reveal"><span class="steps__n">1</span><h3>Вы пишете</h3><p>В Telegram — пару слов о себе и удобном формате. Можно без подробностей.</p></li>
+            <li class="reveal"><span class="steps__n">2</span><h3>Знакомимся</h3><p>На первой встрече говорим о том, что привело, и проверяем, комфортно ли вам со мной.</p></li>
+            <li class="reveal"><span class="steps__n">3</span><h3>Работаем</h3><p>Обычно встречаемся раз в неделю в одно и то же время — регулярность создаёт опору.</p></li>
+            <li class="reveal"><span class="steps__n">4</span><h3>Завершаем</h3><p>Когда запрос решён, мы бережно подводим итоги. Терапия тоже — гештальт, и его важно закрыть.</p></li>
+          </ol>
         </div>
-        <ol class="steps">
-          <li class="reveal"><span class="steps__n">1</span><h3>Вы пишете</h3><p>В Telegram — пару слов о себе и удобном формате. Можно без подробностей.</p></li>
-          <li class="reveal"><span class="steps__n">2</span><h3>Знакомимся</h3><p>На первой встрече говорим о том, что привело, и проверяем, комфортно ли вам со мной.</p></li>
-          <li class="reveal"><span class="steps__n">3</span><h3>Работаем</h3><p>Обычно встречаемся раз в неделю в одно и то же время — регулярность создаёт опору.</p></li>
-          <li class="reveal"><span class="steps__n">4</span><h3>Завершаем</h3><p>Когда запрос решён, мы бережно подводим итоги. Терапия тоже — гештальт, и его важно закрыть.</p></li>
-        </ol>
       </div>
     </section>
 

@@ -1,4 +1,4 @@
-/.local
-/node_modules
-package-lock.json
-/dist
+node_modules
+dist
+.DS_Store
+.vercel

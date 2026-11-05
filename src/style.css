@@ -542,7 +542,7 @@ ol, ul { padding: 0; list-style: none; }
 .outcome { background: var(--paper); }
 .outcome__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 7vw, 120px); align-items: start; }
 .outcome__figure { margin-top: 40px; max-width: 420px; }
-.outcome__figure picture { display: block; border-radius: 220px 220px 8px 8px; overflow: hidden; aspect-ratio: 4 / 5; }
+.outcome__figure picture { display: block; border-radius: 12px; overflow: hidden; aspect-ratio: 3 / 4; }
 .outcome__figure img { width: 100%; height: 100%; object-fit: cover; }
 .outcome__figure figcaption { margin-top: 16px; font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--ink-2); }
 .outcomes { border-top: 1px solid var(--line); }

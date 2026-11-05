@@ -33,7 +33,7 @@ const toggle = document.querySelector("[data-nav-toggle]");
 const menu = document.getElementById("nav-menu");
 const dot = document.querySelector(".gestalt-dot");
 const closeCircle = document.querySelector("[data-close-circle]");
-const contact = document.getElementById("contact");
+const contact = document.querySelector(dot ? dot.getAttribute("href") : "#contact");
 let lastY = window.scrollY;
 
 function setMenu(open) {
@@ -61,9 +61,11 @@ function onScroll() {
 
   // Floating circle closes as the page is read
   const p = max > 0 ? Math.min(y / max, 1) : 0;
-  dot.style.setProperty("--p", p.toFixed(4));
-  const atContact = contact.getBoundingClientRect().top < window.innerHeight * 0.7;
-  dot.classList.toggle("is-visible", y > window.innerHeight * 0.6 && !atContact);
+  if (dot) {
+    dot.style.setProperty("--p", p.toFixed(4));
+    const atContact = contact && contact.getBoundingClientRect().top < window.innerHeight * 0.7;
+    dot.classList.toggle("is-visible", y > window.innerHeight * 0.6 && !atContact);
+  }
 
   // Gestalt section circle closes while the section passes through the viewport
   if (closeCircle) {
@@ -88,42 +90,34 @@ window.addEventListener(
 window.addEventListener("resize", onScroll);
 onScroll();
 
-/* ---------- First-message composer ---------- */
-const form = document.querySelector("[data-composer]");
-const preview = form.querySelector("[data-preview]");
-const hint = form.querySelector("[data-hint]");
-
-function buildMessage() {
-  const data = new FormData(form);
-  const name = String(data.get("name") || "").trim();
-  const format = data.get("format");
-  const topics = data.getAll("topic");
-  const note = String(data.get("note") || "").trim();
-
-  const lines = [name ? `Здравствуйте, Екатерина! Меня зовут ${name}.` : "Здравствуйте, Екатерина!"];
-  lines.push("Хочу записаться на консультацию" + (format && format !== "пока не знаю" ? ` (${format}).` : "."));
-  if (format === "пока не знаю") lines.push("Пока не решил(а), онлайн или очно.");
-  if (topics.length) lines.push(`Что беспокоит: ${topics.join(", ")}.`);
-  if (note) lines.push(note);
-  return lines.join("\n");
-}
-function render() {
-  preview.textContent = buildMessage();
-}
-form.addEventListener("input", render);
-form.addEventListener("change", render);
-render();
-
-// Pricing buttons preselect the format
-document.querySelectorAll("[data-format]").forEach((btn) =>
-  btn.addEventListener("click", () => {
-    const input = form.querySelector(`input[name="format"][value="${btn.dataset.format}"]`);
-    if (input) {
-      input.checked = true;
-      render();
-    }
-  })
-);
+/* ---------- First-message composers ---------- */
+const builders = {
+  client(data) {
+    const name = String(data.get("name") || "").trim();
+    const format = data.get("format");
+    const topics = data.getAll("topic");
+    const note = String(data.get("note") || "").trim();
+    const lines = [name ? `Здравствуйте, Екатерина! Меня зовут ${name}.` : "Здравствуйте, Екатерина!"];
+    lines.push("Хочу записаться на консультацию" + (format && format !== "пока не знаю" ? ` (${format}).` : "."));
+    if (format === "пока не знаю") lines.push("Пока не решил(а), онлайн или очно.");
+    if (topics.length) lines.push(`Что беспокоит: ${topics.join(", ")}.`);
+    if (note) lines.push(note);
+    return lines.join("\n");
+  },
+  pro(data) {
+    const name = String(data.get("name") || "").trim();
+    const stage = data.get("stage");
+    const format = data.get("format");
+    const note = String(data.get("note") || "").trim();
+    const lines = [name ? `Привет, Катя! Меня зовут ${name}.` : "Привет, Катя!"];
+    if (stage) lines.push(`Я ${stage}.`);
+    if (format === "не знаю") lines.push("Хочу что-то, но не знаю что — хочу понять, какой формат мне подойдёт.");
+    else if (format) lines.push(`Интересует сопровождение: ${format}.`);
+    else lines.push("Интересует сопровождение для психологов.");
+    if (note) lines.push(note);
+    return lines.join("\n");
+  },
+};
 
 async function copy(text) {
   try {
@@ -146,17 +140,51 @@ async function copy(text) {
   }
 }
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  // Start copying while the page still has focus, then open Telegram
-  // synchronously inside the click so popup blockers allow it.
-  const copied = copy(buildMessage());
-  const win = window.open(TELEGRAM, "_blank");
-  if (win) win.opener = null;
-  const ok = await copied;
-  hint.textContent = ok
-    ? "Сообщение скопировано — вставьте его в чат Telegram."
-    : "Не получилось скопировать автоматически — выделите текст выше и скопируйте вручную.";
-  hint.classList.add("is-done");
-  if (!win) window.location.href = TELEGRAM;
+document.querySelectorAll("[data-composer]").forEach((form) => {
+  const build = builders[form.dataset.composer] || builders.client;
+  const preview = form.querySelector("[data-preview]");
+  const hint = form.querySelector("[data-hint]");
+  const message = () => build(new FormData(form));
+  const render = () => (preview.textContent = message());
+  form.addEventListener("input", render);
+  form.addEventListener("change", render);
+  render();
+
+  // Buttons elsewhere on the page can preselect a format: data-format="value"
+  document.querySelectorAll("[data-format]").forEach((btn) =>
+    btn.addEventListener("click", () => {
+      const input = form.querySelector(`input[name="format"][value="${btn.dataset.format}"]`);
+      if (!input) return;
+      input.checked = true;
+      render();
+      if (btn.hasAttribute("data-focus-note")) setTimeout(() => form.querySelector("textarea")?.focus({ preventScroll: true }), 700);
+    })
+  );
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    // Start copying while the page still has focus, then open Telegram
+    // synchronously inside the click so popup blockers allow it.
+    const copied = copy(message());
+    const win = window.open(TELEGRAM, "_blank");
+    if (win) win.opener = null;
+    const ok = await copied;
+    hint.textContent = ok
+      ? "Сообщение скопировано — вставьте его в чат Telegram."
+      : "Не получилось скопировать автоматически — выделите текст выше и скопируйте вручную.";
+    hint.classList.add("is-done");
+    if (!win) window.location.href = TELEGRAM;
+  });
+});
+
+/* ---------- Review filters ---------- */
+document.querySelectorAll("[data-filter-group]").forEach((group) => {
+  const items = document.querySelectorAll(group.dataset.filterGroup);
+  group.addEventListener("click", (e) => {
+    const btn = e.target.closest("button[data-filter]");
+    if (!btn) return;
+    group.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+    const f = btn.dataset.filter;
+    items.forEach((el) => (el.hidden = f !== "all" && el.dataset.topic !== f));
+  });
 });

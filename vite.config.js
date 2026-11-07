@@ -1,5 +1,9 @@
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
+import { buildRazbory, latestBlock } from "./scripts/razbory.mjs";
+
+/* Раздел «Разборы» собирается из content/razbory/*.md перед запуском Vite. */
+const POSTS = buildRazbory();
 
 /*
  * Публичный адрес сайта. Меняется в одном месте (или через переменную
@@ -20,6 +24,8 @@ const METRIKA_ID = process.env.YANDEX_METRIKA_ID || "";
 const PAGES = [
   { path: "/", priority: "1.0" },
   { path: "/psychologists/", priority: "0.8" },
+  ...(POSTS.length ? [{ path: "/razbory/", priority: "0.7" }] : []),
+  ...POSTS.map((p) => ({ path: `/razbory/${p.slug}/`, priority: "0.6", lastmod: p.date })),
 ];
 
 const stripTags = (s) =>
@@ -61,18 +67,28 @@ function metrika() {
 function seo() {
   return {
     name: "seo",
+    configureServer(server) {
+      server.watcher.add(resolve(import.meta.dirname, "content/razbory"));
+      server.watcher.on("change", (f) => {
+        if (f.includes("content/razbory")) {
+          buildRazbory();
+          server.ws.send({ type: "full-reload" });
+        }
+      });
+    },
     transformIndexHtml(html) {
       return html
         .replaceAll("%SITE_URL%", SITE_URL)
         .replace("<!-- seo:verification -->", verificationTags())
         .replace("<!-- seo:faq -->", faqJsonLd(html))
-        .replace("<!-- seo:metrika -->", metrika());
+        .replace("<!-- seo:metrika -->", metrika())
+        .replace("<!-- razbory:latest -->", latestBlock(POSTS));
     },
     generateBundle() {
       const today = new Date().toISOString().slice(0, 10);
       const urls = PAGES.map(
         (p) =>
-          `  <url>\n    <loc>${SITE_URL}${p.path}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${p.priority}</priority>\n  </url>`
+          `  <url>\n    <loc>${SITE_URL}${p.path}</loc>\n    <lastmod>${p.lastmod || today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${p.priority}</priority>\n  </url>`
       ).join("\n");
       this.emitFile({
         type: "asset",
@@ -96,6 +112,8 @@ export default defineConfig({
         main: resolve(import.meta.dirname, "index.html"),
         psychologists: resolve(import.meta.dirname, "psychologists/index.html"),
         notFound: resolve(import.meta.dirname, "404.html"),
+        ...(POSTS.length ? { razbory: resolve(import.meta.dirname, "razbory/index.html") } : {}),
+        ...Object.fromEntries(POSTS.map((p) => [`razbory-${p.slug}`, resolve(import.meta.dirname, `razbory/${p.slug}/index.html`)])),
       },
     },
   },

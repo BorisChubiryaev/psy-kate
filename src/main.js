@@ -33,7 +33,7 @@ const toggle = document.querySelector("[data-nav-toggle]");
 const menu = document.getElementById("nav-menu");
 const dot = document.querySelector(".gestalt-dot");
 const closeCircle = document.querySelector("[data-close-circle]");
-const contact = document.querySelector(dot ? dot.getAttribute("href") : "#contact");
+const contact = dot && dot.getAttribute("href").startsWith("#") ? document.querySelector(dot.getAttribute("href")) : null;
 let lastY = window.scrollY;
 
 function setMenu(open) {

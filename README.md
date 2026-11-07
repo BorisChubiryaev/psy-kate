@@ -28,3 +28,11 @@ convert photo.jpg -colorspace gray -colorspace sRGB +level-colors '#221d19','#f3
   `BING_VERIFICATION`, `YANDEX_METRIKA_ID` (или прямо в `vite.config.js`).
 - Разметка FAQ для поисковиков собирается автоматически из блока вопросов на главной.
 - Сборка: команда `npm run build`, папка с результатом — `dist`.
+
+## Раздел «Разборы»
+
+- Статьи лежат в `content/razbory/*.md`. Имя файла = адрес страницы (`holod.md` → `/razbory/holod/`).
+- В начале файла — блок между `---`: `title`, `description`, `date` (ГГГГ-ММ-ДД), `category`,
+  `cover` (имя картинки или пусто), `cover_alt`, `credit` (источник кадров), `source` (ссылка на оригинал).
+- Картинки статьи — в `public/razbory/<имя-статьи>/`; в тексте: `![описание](02.webp "подпись")`.
+- Лента `/razbory/`, страницы статей, блок «Разборы» на главной и sitemap собираются автоматически.
